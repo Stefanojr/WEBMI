@@ -49,7 +49,7 @@
             </a>
             <a href="/superadmin/approval">
                 <i class="fas fa-check"></i>
-                Approval Risalah
+                Approval 
             </a>
 
         </div>

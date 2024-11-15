@@ -73,16 +73,6 @@
 
         </div>
         <div class="form-group">
-            <label for="perihal">Keterangan Daftar</label>
-
-            <select id="perihal">
-                <option value="" disabled selected>Pilih Keterangan</option>
-                <option value="pendaftaran">PENDAFTARAN BARU</option>
-                <option value="pendaftaran">PERUBAHAN TEMA / JUDUL</option>
-                <option value="pendaftaran">PERUBAHAN ANGGOTA</option>
-            </select>
-        </div>
-        <div class="form-group">
             <label for="tanggal">Tanggal Pendaftaran</label>
             <div class="date-icon">
                 <input type="date" id="tanggal" value="Date">

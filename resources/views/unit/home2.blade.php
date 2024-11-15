@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="table-container">
-        <h2>DAFTAR PENGAJUAN</h2>
+        <h2>DAFTAR IMPROVEMENT</h2>
         <div class="table-scroll">
             <table>
                 <thead>
