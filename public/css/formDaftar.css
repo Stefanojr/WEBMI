@@ -14,7 +14,7 @@ body {
     max-width: 1000px;
     padding: 30px;
     position: -webkit-sticky;
-    margin-top: -420px;
+    margin-top: -400px;
     margin-left: 150px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -58,7 +58,7 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 40px;
-    margin-right: 20px;
+    margin-right: 80px;
 }
 .form-group select {
     flex: 1; /* Membuat input dan select mengisi sisa ruang */
@@ -67,7 +67,7 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 40px;
-    margin-right: 100px;
+    margin-right: 700px;
 }
 
 .form-group input.short {
@@ -97,7 +97,7 @@ h1 {
     font-size: 14px;
     cursor: pointer;
     margin-top: 25px;
-    margin-left: 860px;
+    margin-left: 800px;
     margin-bottom: 30px;
     width: 120px;
 }

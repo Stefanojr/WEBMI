@@ -19,7 +19,7 @@
     <div class="login-container" style="text-align: center;">
         <div class="slideshow-container">
             <div class="mySlides">
-                <img src="images/gambar4.jpg" style="width:100%">
+                <img src="images/gambar1.jpg" style="width:100%">
                 <div class="text"></div>
             </div>
 
@@ -34,7 +34,7 @@
             </div>
 
             <div class="mySlides">
-                <img src="images/gambar1.jpg" style="width:100%">
+                <img src="images/gambar4.jpg" style="width:100%">
                 <div class="text"></div>
             </div>
 
@@ -50,22 +50,23 @@
 
     <script>
         let slideIndex = 0;
-showSlides();
+        showSlides();
 
-function showSlides() {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
 
-    slides[slideIndex - 1].style.display = "block";
-    slides[slideIndex - 1].style.animation = "slide 1s forwards"; // Menambahkan animasi slide
+            slides[slideIndex - 1].style.display = "block";
+            slides[slideIndex - 1].style.animation = "slide 1s forwards"; // Menambahkan animasi slide
 
-    setTimeout(showSlides, 3000); // Ubah slide setiap 3 detik
-}
+            setTimeout(showSlides, 3000); // Ubah slide setiap 3 detik
+        }
+
         const loginBtn = document.getElementById('login-btn');
         const userIdInput = document.getElementById('user-id');
         const usernameInput = document.getElementById('username');
@@ -78,7 +79,7 @@ function showSlides() {
             const username = usernameInput.value;
             const password = passwordInput.value;
 
-            const userRole = authenticateUser (userId, username, password);
+            const userRole = authenticateUser(userId, username, password);
 
             if (userRole) {
                 alert('Successful login!');
@@ -92,6 +93,9 @@ function showSlides() {
                     case 'viewer':
                         window.location.href = 'viewer/home3';
                         break;
+                    case 'sysadmin':
+                        window.location.href = 'sysadmin/home4'; // Halaman untuk sysadmin
+                        break;
                     default:
                         alert('Invalid username, ID or password');
                 }
@@ -100,7 +104,7 @@ function showSlides() {
             }
         });
 
-        function authenticateUser (userId, username, password) {
+        function authenticateUser(userId, username, password) {
             // Pengguna superadmin
             const superadmins = [
                 { id: 'superadmin1', username: 'superadmin1', password: 'SA123' },
@@ -121,7 +125,12 @@ function showSlides() {
                 { id: 'viewer1', username: 'viewer1', password: 'V123' },
                 { id: 'viewer2', username: 'viewer2', password: 'V888' },
                 { id: 'viewer3', username: 'viewer3', password: 'V789' },
+            ];
 
+            // Pengguna sysadmin
+            const sysadmins = [
+                { id: 'sysadmin1', username: 'sysadmin1', password: 'SY1234' },
+                { id: 'sysadmin2', username: 'sysadmin2', password: 'SY5678' },
             ];
 
             // Cekrole superadmin
@@ -142,6 +151,13 @@ function showSlides() {
             for (let viewer of viewers) {
                 if (userId === viewer.id && username === viewer.username && password === viewer.password) {
                     return 'viewer';
+                }
+            }
+
+            // Cekrole sysadmin
+            for (let sysadmin of sysadmins) {
+                if (userId === sysadmin.id && username === sysadmin.username && password === sysadmin.password) {
+                    return 'sysadmin'; // Mengembalikan role sysadmin
                 }
             }
 

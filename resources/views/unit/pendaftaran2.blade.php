@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../css/tableUnitDash.css">
 <html>
 <head>
-    <title>Form Permohonan Pendaftaran Management Improvement</title>
+    <title>Permohonan Pendaftaran Management Improvement</title>
     <script>
         function addToTable() {
             // Mengambil nilai dari input
@@ -47,8 +47,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>FORM PERMOHONAN PENDAFTARAN MANAGEMENT IMPROVEMENT</h1>
+        <h1>PERMOHONAN PENDAFTARAN MANAGEMENT IMPROVEMENT</h1>
 
+        <div class="form-group">
+            <label for="idDaftar">ID Pendaftaran</label>
+            <input type="text" id="idDaftar" name="idDaftar" disabled>
+        </div>
         <div class="section-title">IDENTITAS GRUP</div>
         <div class="form-group">
             <label for="pabrik">Pabrik / Departemen</label>

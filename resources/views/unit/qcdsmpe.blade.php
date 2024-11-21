@@ -94,7 +94,7 @@
     const addRowBtn = document.getElementById('addRowBtn');
 
     // Mengatur nomor awal
-    let count = 1; // Pastikan dimulai dari 1
+    let count = 0; // Pastikan dimulai dari 1
 
     // Fungsi untuk memperbarui nomor otomatis
     function updateCount() {

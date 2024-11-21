@@ -54,7 +54,7 @@ body {
     background-color: #4d6b4a; /* Warna latar belakang saat aktif */
     color: #ffffff; /* Warna teks saat aktif */
     border-radius: 3px;
-   
+
 }
 
 .sidebar .menu a i {
@@ -76,6 +76,12 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+.sidebar .logout button:hover {
+    background-color:grey; /* Mengubah warna background saat hover */
+    color: #ffffff; /* Mengubah warna teks saat hover */
+    transform: scale(1.05); /* Efek sedikit membesar saat hover */
 }
 
 .sidebar .logout button i {
@@ -148,4 +154,39 @@ body {
 
 .show {
     display: block;
+}
+/* Submenu */
+.submenu {
+    display: none; /* Tersembunyi secara default */
+    margin-left: 20px; /* Memberikan sedikit indentasi */
+    flex-direction: column;
+}
+
+.submenu a {
+    font-size: 14px;
+    padding: 10px 20px;
+    color: #666;
+    text-decoration: none;
+}
+
+.submenu a:hover {
+    background-color: #f1f1f1;
+    color: #000;
+}
+.logout-icon {
+    width:200px; /* Lebar gambar */
+    height: 140px; /* Mempertahankan proporsi gambar */
+    margin-bottom: 50px; /* Memberikan jarak antara gambar dan tombol */
+}
+
+.logout button {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }

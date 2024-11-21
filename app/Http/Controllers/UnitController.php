@@ -11,6 +11,10 @@ class UnitController extends Controller
     {
         return view('unit/home2');
     }
+    public function daftarImprovement()
+    {
+        return view('unit/daftarImprovement');
+    }
     public function pendaftaran2()
     {
         return view('unit/pendaftaran2');

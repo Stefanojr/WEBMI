@@ -70,6 +70,18 @@ class PageController extends Controller
           return view('viewer/approval3');
       }
 
+
+      //Sysadmin
+
+      public function home4()
+      {
+          return view('sysadmin/home4');
+      }
+      public function ManagementUser()
+      {
+          return view('sysadmin/ManagementUser');
+      }
+
     //   Logout
 
     public function logout()

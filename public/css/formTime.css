@@ -9,7 +9,7 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     margin-top: -735px;
-    margin-left: 350px;
+    margin-left: 310px;
     position: fixed;
     padding: 30px;
     background-color: white;
@@ -26,19 +26,43 @@ h2 {
 h3 {
     text-align: center;
     font-size: 18px;
-    margin: 20px 0; /* Memberikan jarak di atas dan bawah judul */
+    margin: 20px 0; 
 }
 
 .form-group {
     margin-bottom: 15px;
-    display: flex; /* Menggunakan flexbox untuk menyusun label dan input */
-    align-items: center; /* Menyelaraskan item di tengah secara vertikal */
+    display: flex;
+    align-items: center;
 }
 
 .form-group label {
-    width: 150px; /* Mengatur lebar label */
+    width: 150px;
     font-size: 14px;
-    margin-right: 20px; /* Memberikan jarak antara label dan input */
+    margin-right: 20px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+input[type="date"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 40px; /* Memberikan jarak antara input tanggal dan input waktu */
+}
+
+.short-input {
+    width: 80px; /* Lebar yang lebih kecil untuk input waktu */
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 200px;
+    margin-left: -40px;
+
 }
 
 input[type="text"],
@@ -69,7 +93,7 @@ input[type="time"]:focus {
 .submit-btn {
     padding: 10px;
     background-color: #4a6b4f;
-    margin-left: 555px;
+    margin-left: 620px;
     margin-top: 10px;
     color: white;
     border: none;

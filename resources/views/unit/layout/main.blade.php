@@ -44,42 +44,31 @@
      Dashboard
     </a>
     <a href="/unit/pendaftaran2">
-    <i class="fas fa-file-alt">
-    </i>
+        <i class="fas fa-file-alt">
+        </i>
     Pendaftaran Improvement
-    </a>
-    <a href="/unit/timetable">
-        <i class="fas fa-calendar"></i>
-    Time Table
-    </a>
-    <a href="/unit/qcdsmpe">
-        <i class="fas fa-table"></i>
-    Qcdsmpe
-    </a>
-    <a href="/unit/risalah2">
-        <i class="fas fa-file"></i>
-    Risalah Improvement
-    </a>
-
-    <a href="/unit/approval2">
-        <i class="fas fa-check">
-         </i>
-    Approval Risalah
         </a>
+    <a class="active" href="/unit/daftarImprovement">
+        <i class="fas fa-list">
+        </i>
+    Daftar Improvement
+       </a>
 
    </div>
    <div class="logout">
+    <img src="../images/gambarGP.png" class="logout-icon">
     <button onclick="logout()">
         <i class="fas fa-power-off"></i>
         Logout
     </button>
 </div>
+
   </div>
   <div class="content" style="flex-grow: 1;">
     <div class="topbar">
     <h3>Welcome, Department Groups!</h3>
 
-                <div class="profile-icon"></div>
+                <div class="profile-icon">U</div>
 
     </i>
    </div>

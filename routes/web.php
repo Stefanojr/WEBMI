@@ -35,7 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
         return view('viewer/home3');
     })->name('viewer.home3');
 
-
 });
 
 // routes superadmin page (pendaftaran, proposal and approval)
@@ -50,6 +49,9 @@ Route::get('/superadmin/approval', function () {
 })->name('superadmin.approval');
 
 // routes unit page (pendaftaran, risalah and approval)
+Route::get('/unit/daftarImprovement', function () {
+    return view('unit.daftarImprovement');
+})->name('unit.daftarImprovement');
 Route::get('/unit/pendaftaran2', function () {
     return view('unit.pendaftaran2');
 })->name('unit.pendaftaran2');
@@ -76,6 +78,22 @@ Route::get('/viewer/risalah3', function () {
 Route::get('/viewer/approval3', function () {
     return view('viewer.approval3');
 })->name('viewer.approval3');
+
+// routes sysadmin page (Management User)
+Route::get('/sysadmin/home4', function () {
+    return view('sysadmin.home4');
+})->name('sysadmin.home4');
+Route::get('/sysadmin/ManagementUser', function () {
+    return view('sysadmin.ManagementUser');
+})->name('sysadmin.ManagementUser');
+Route::get('/sysadmin/perusahaan', function () {
+    return view('sysadmin.perusahaan');
+})->name('sysadmin.perusahaan');
+Route::get('/sysadmin/user', function () {
+    return view('sysadmin.user');
+})->name('sysadmin.user');
+
+
 
 // routes/web.php
 Route::get('/superadmin/home', 'SuperadminController@home')->name('superadmin.home');

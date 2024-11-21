@@ -19,8 +19,12 @@
         <h2>FORM TIME TABLE</h2>
         <form>
             <div class="form-group">
+                <label for="idDaftar">ID Pendaftaran</label>
+                <input type="text" id="idDaftar" disabled>
+            </div>
+            <div class="form-group">
                 <label for="noInput">Langkah ke</label>
-                <input type="text" id="noInput" disabled> <!-- Input yang akan terisi otomatis -->
+                <input type="text" id="noInput" disabled>
             </div>
             <div class="form-group">
                 <label for="faseInput">Fase</label>
@@ -41,13 +45,23 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="tanggalAwal">Rencana Pelaksanaan Awal</label>
-                <input type="date" id="tanggalAwal" name="tanggalAwal" required>
+                <label for="rencanaAwal">Rencana Awal</label>
+                <div class="input-container">
+                    <input type="date" id="rencanaAwal" name="rencanaAwal" required>
+                    <label for="rencanaAwal">Akhir</label>
+                    <input type="date" id="rencanaAwalShort" name="rencanaAwalShort"  class="short-input">
+                </div>
             </div>
+
             <div class="form-group">
-                <label for="tanggalAwal">Rencana Pelaksanaan Akhir</label>
-                <input type="date" id="tanggalAwal" name="tanggalAwal" required>
+                <label for="rencanaAkhir">Realisasi Awal</label>
+                <div class="input-container">
+                    <input type="date" id="rencanaAkhir" name="rencanaAkhir" required>
+                    <label for="rencanaAwal">Akhir</label>
+                    <input type="date" id="rencanaAkhirShort" name="rencanaAkhirShort" class="short-input">
+                </div>
             </div>
+
             <div class="section-title">INDIKATOR TIME TABLE</div>
             <div class="form-group">
                 <label for="plan">Planning</label>
