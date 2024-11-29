@@ -1,37 +1,38 @@
 <?php
 
-namespace App\Models;
+namespace App; // Perbaiki namespace User
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable; // Pastikan ini ada
 
-class User extends Model
+class User extends Authenticatable   // Pastikan User mengextends Authenticatable
 {
-  // app/Models/User.php
-
+    protected $table = 'tb_user'; // Nama tabel di database
+    protected $primaryKey = 'id_user'; // Nama primary key
+    public $timestamps = false; // Nonaktifkan timestamps otomatis
 
     protected $fillable = [
-        'username',
-        'password',
-        'id',
+        'id_unit', 'perner', 'password', 'nama_user', 'email_user', 'role_user', 'aktif'];
+
+    protected $casts = [
+            'aktif' => 'integer',
+        ];
+
+
+    protected $dates = [
+        'created_at', 'last_login'  // Ini untuk mengonversi timestamp ke objek Carbon
     ];
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+    protected $hidden = [
+        'password', // Jangan tampilkan password saat mengambil data
+    ];
 
-    public function setRoleAttribute($value)
+    public function unit()
     {
-        if ($this->id == 1) {
-            $this->attributes['role'] = 'superadmin';
-        } elseif ($this->id == 2) {
-            $this->attributes['role'] = 'unit';
-        } else {
-            $this->attributes['role'] = 'viewer';
-        }
+        return $this->belongsTo(Unit::class, 'id_unit', 'id_unit');
     }
-    
+    public function perusahaan()
+    {
+        return $this->hasOneThrough(Perusahaan::class, Unit::class, 'id_unit', 'id_perusahaan', 'id_unit', 'id_perusahaan');
+    }
 }
-
-

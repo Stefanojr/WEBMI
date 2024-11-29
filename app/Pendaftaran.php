@@ -1,17 +1,22 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pendaftaran extends Model
 {
-    use HasFactory;
+    protected $table = 'pendaftaran';
+    protected $primaryKey = 'id_pendaftaran';
+    public $timestamps = true;
 
     protected $fillable = [
-        'pabrik', 'unit', 'nama_kelompok', 'ketua_kelompok', 'fasilitator',
-        'jenis_group', 'perihal', 'tanggal', 'nomor_tema', 'judul', 'tema'
+        'kreteria_grup', 'pabrik', 'unit', 'nama_grup', 'ketua_grup', 'nomor_tema', 'judul', 'tema'
     ];
-}
 
+    public function grups()
+    {
+        return $this->hasMany(Grup::class, 'id_pendaftaran');
+    }
+}

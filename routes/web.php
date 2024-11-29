@@ -14,12 +14,33 @@
 
 use App\Http\Controllers\SubmissionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Unit\PendaftaranController;
+use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\AuthController;
 
 // Login route
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('login');
+})->name('login');
+
+// Route untuk login (POST)
+Route::post('/', [AuthController::class, 'login']);
+
+// Route untuk masing-masing halaman berdasarkan role
+// Route untuk role 'admin'
+Route::get('/sysadmin/home4', function () {
+    return view('sysadmin.home4');
+})->name('sysadmin.home4');
+
+// Route untuk role 'user'
+Route::get('/unit/home2', function () {
+    return view('unit.home2');
+})->name('unit.home2');
+
+// Route untuk role 'manager'
+Route::get('/superadmin/home', function () {
+    return view('superadmin.home');
+})->name('superadmin.home');
 
 // Dashboard routes untuk masing-masing role
 Route::group(['middleware' => 'auth'], function () {
@@ -117,6 +138,42 @@ Route::get('/unit/approval2', [SubmissionController::class, 'showApproval'])->na
 //     Route::get('/', [PendaftaranController::class, 'create'])->name('create');
 //     Route::post('store', [PendaftaranController::class, 'store'])->name('store');
 // });
+
+Route::get('/sysadmin/perusahaan', [DataController::class, 'index']);
+Route::get('/sysadmin/perusahaan/edit/{id}', [CompanyController::class, 'edit'])->name('edit-company');
+Route::get('/sysadmin/perusahaan/delete/{id}', [CompanyController::class, 'destroy'])->name('delete-company');
+Route::get('/sysadmin/user', [DataController::class, 'formUser'])->name('sysadmin.user');
+Route::post('/sysadmin/user/insert', [DataController::class, 'insertUser'])->name('users.insert');
+
+Route::get('/users/{id_user}/edit', [DataController::class, 'edit'])->name('users.edit');
+Route::put('/users/{id_user}', [DataController::class, 'update'])->name('users.update');
+Route::delete('/users/{id_user}', [DataController::class, 'destroy'])->name('users.destroy');
+
+Route::prefix('unit')->group(function () {
+    // Menampilkan form pendaftaran
+    Route::get('/pendaftaran2', [PendaftaranController::class, 'create'])->name('pendaftaran.form');
+
+    // Menyimpan data pendaftaran
+    Route::post('/pendaftaran2', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+
+    // Rute untuk mengambil unit berdasarkan perusahaan
+    Route::post('/get-units', [PendaftaranController::class, 'getUnits'])->name('get-units');
+});
+
+//DATA
+Route::post('/insert-perusahaan', 'DataController@insertPerusahaan');
+Route::post('/insert-unit', 'DataController@insertUnit');
+Route::post('/insert-user', 'DataController@insertUser');
+// Tampilkan form
+Route::get('/form-perusahaan', 'DataController@formPerusahaan');
+Route::get('/form-unit', 'DataController@formUnit');
+Route::get('/form-user', 'DataController@formUser');
+
+Route::get('/form-user', function() {
+    return view('form-user');
+});
+
+Route::post('/user', [DataController::class, 'insertUser'])->name('data.insertUser');
 
 // Authentication routes
 Auth::routes();

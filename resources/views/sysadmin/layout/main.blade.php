@@ -4,14 +4,6 @@
     <title>Sysadmin Page</title>
     <link rel="stylesheet" href="../../css/main.css">
     <script>
-         function confirmLogout() {
-            // Tampilkan pesan konfirmasi sebelum logout
-            const isConfirmed = confirm("Apakah anda yakin akan logout?");
-            if (isConfirmed) {
-                // Jika pengguna mengonfirmasi, redirect ke halaman login
-                window.location.href = '/';
-            }
-        }
         function logout() {
             // Redirect ke halaman login
             window.location.href = '/';
@@ -73,8 +65,7 @@
 
         <div class="logout">
             <img src="../images/gambarGP.png" class="logout-icon">
-            <!-- Panggil fungsi confirmLogout ketika tombol Logout diklik -->
-            <button onclick="confirmLogout()">
+            <button onclick="logout()">
                 <i class="fas fa-power-off"></i>
                 Logout
             </button>

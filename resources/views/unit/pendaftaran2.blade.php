@@ -4,157 +4,212 @@
 @section('content')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+<link rel="stylesheet" href="../../css/background.css">
 <link rel="stylesheet" href="../../css/formDaftar.css">
 <link rel="stylesheet" href="../../css/tableUnitDash.css">
-<html>
-<head>
-    <title>Permohonan Pendaftaran Management Improvement</title>
-    <script>
-    function addToTable() {
-    // Mengambil nilai dari input
-    var jabatan = document.getElementById("jabatan").value;
-    var perner = document.getElementById("perner").value;
-    var nama = document.getElementById("nama").value;
-    var fotoInput = document.getElementById("foto");
-    var foto = fotoInput.files[0] ? fotoInput.files[0] : null;
 
-    // Mendapatkan tabel dan menambahkan baris baru
-    var table = document.getElementById("strukturOrganisasiTable").getElementsByTagName('tbody')[0];
-    var newRow = table.insertRow();
+<div class="container">
+    <h1>FORM PERMOHONAN PENDAFTARAN MANAGEMENT IMPROVEMENT</h1>
 
-    // Menambahkan sel ke baris baru
-    var cellDelete = newRow.insertCell(0);
-    var cellNo = newRow.insertCell(1);
-    var cellJabatan = newRow.insertCell(2);
-    var cellPerner = newRow.insertCell(3);
-    var cellNama = newRow.insertCell(4);
-    var cellFoto = newRow.insertCell(5);
+    <!-- Error Handling -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    // Mengisi sel dengan data
-    cellDelete.innerHTML = '<button class="delete-btn" onclick="deleteRow(this)">Delete</button>';
-    cellNo.innerHTML = table.rows.length; // Nomor urut
-    cellJabatan.innerHTML = jabatan;
-    cellPerner.innerHTML = perner;
-    cellNama.innerHTML = nama;
-
-    if (foto) {
-        // Membuat URL file sementara untuk ditampilkan
-        var fileUrl = URL.createObjectURL(foto);
-        cellFoto.innerHTML = `<a href="${fileUrl}" target="_blank">${foto.name}</a>`;
-    } else {
-        cellFoto.innerHTML = 'Tidak ada foto';
-    }
-
-    // Mengosongkan input setelah ditambahkan
-    document.getElementById("jabatan").value = '';
-    document.getElementById("perner").value = '';
-    document.getElementById("nama").value = '';
-    fotoInput.value = '';
-}
-
-function deleteRow(button) {
-    // Hapus baris yang sesuai
-    var row = button.parentNode.parentNode;
-    row.parentNode.removeChild(row);
-
-    // Perbarui nomor urut pada tabel
-    updateRowNumbers();
-}
-
-function updateRowNumbers() {
-    const table = document.getElementById("strukturOrganisasiTable").getElementsByTagName('tbody')[0];
-    for (let i = 0; i < table.rows.length; i++) {
-        table.rows[i].cells[2].innerHTML = i + 1; // Perbarui nomor urut
-    }
-}
-
-    </script>
-</head>
-<body>
-    <div class="container">
-        <h1>PERMOHONAN PENDAFTARAN MANAGEMENT IMPROVEMENT</h1>
-
+    <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <!-- Form Identitas Grup -->
         <div class="section-title">IDENTITAS GRUP</div>
+
+        <!-- Pabrik -->
         <div class="form-group">
             <label for="pabrik">Pabrik / Departemen</label>
-            <input type="text" id="pabrik" name="pabrik" required>
+            <select id="pabrik" name="pabrik" required>
+                <option value="" disabled selected>Pilih Pabrik</option>
+                @foreach ($perusahaans as $perusahaan)
+                    <option value="{{ $perusahaan->id_perusahaan }}" {{ old('pabrik') == $perusahaan->id_perusahaan ? 'selected' : '' }}>
+                        {{ $perusahaan->nama_perusahaan }}
+                    </option>
+                @endforeach
+            </select>
         </div>
+
+        <!-- Unit -->
         <div class="form-group">
             <label for="unit">Unit</label>
-            <input type="text" id="unit" name="unit" required>
+            <select id="unit" name="unit" required>
+                <option value="" disabled selected>Pilih Unit</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="nama_grup">Nama Grup</label>
+            <input type="text" id="nama_grup" name="nama_grup" value="{{ old('nama_grup') }}" required>
         </div>
         <div class="form-group">
-            <label for="nama-kelompok">Nama Kelompok</label>
-            <input type="text" id="nama-kelompok" name="nama-kelompok" required>
-        </div>
-        <div class="form-group" >
-            <label for="group">Kriteria Improvement</label>
-            <select id="group">
+            <label for="kreteria_grup">Kriteria Improvement</label>
+            <select id="kreteria_grup" name="kreteria_grup" required>
                 <option value="" disabled selected>Pilih Kriteria</option>
                 <option value="scft">SIDO CROSS FUNCTIONAL TEAM (SCFT)</option>
                 <option value="sga">SIDO GROUP ACTIVITY (SGA)</option>
                 <option value="ss">SIDO SARAN (SS)</option>
             </select>
-
         </div>
-        
+
+        <!-- Form Keterangan Tema -->
         <div class="section-title">KETERANGAN TEMA</div>
         <div class="form-group">
-            <label for="nomor-tema">Nomor Tema</label>
-            <input type="text" id="nomor-tema">
+            <label for="nomor_tema">Nomor Tema</label>
+            <input type="text" id="nomor_tema" name="nomor_tema" value="{{ old('nomor_tema') }}" required>
         </div>
         <div class="form-group">
-            <label for="tema">Judul</label>
-            <input type="text" id="tema">
+            <label for="judul">Judul</label>
+            <input type="text" id="judul" name="judul" value="{{ old('judul') }}" required>
         </div>
         <div class="form-group">
             <label for="tema">Tema</label>
-            <input type="text" id="tema">
+            <textarea id="tema" name="tema" required>{{ old('tema') }}</textarea>
         </div>
 
+        <!-- Form Struktur Organisasi Grup -->
         <div class="section-title">STRUKTUR ORGANISASI</div>
         <div class="form-group">
             <label>Jabatan</label>
-            <input type="text" id="jabatan" required/>
+            <input type="text" name="grup_temp[jabatan_grup]">
         </div>
         <div class="form-group">
             <label>Perner</label>
-            <input type="text" id="perner" required/>
+            <input type="text" name="grup_temp[perner]">
         </div>
         <div class="form-group">
             <label>Nama</label>
-            <input type="text" id="nama" required/>
+            <input type="text" name="grup_temp[nama]">
         </div>
         <div class="form-group">
             <label>Foto</label>
-            <input type="file" id="foto" accept=".jpg, .jpeg, .png" required/>
+            <input type="file" name="grup_temp[foto]" accept=".jpg, .jpeg, .png">
         </div>
-        <button type="button" class="insert-btn" onclick="addToTable()">+ Tambah</button>
 
-        <table id="strukturOrganisasiTable">
+        <!-- Input hidden untuk menyimpan data grup -->
+        <input type="hidden" name="grup_data" id="grup_data">
+
+        <!-- Tombol Tambah Grup -->
+        <button type="button" onclick="addGrup()">+ Tambah Grup</button>
+
+        <!-- Tabel untuk menampilkan grup yang ditambahkan -->
+        <table>
             <thead>
                 <tr>
-                    <th>Delete</th>
-                    <th>No.</th>
                     <th>Jabatan</th>
                     <th>Perner</th>
                     <th>Nama</th>
                     <th>Foto</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Data akan ditambahkan di sini -->
+            <tbody id="grup-table-body">
+                <!-- Grup yang ditambahkan secara dinamis akan masuk ke sini -->
             </tbody>
         </table>
 
+        <button type="submit" class="submit-btn">SUBMIT</button>
+    </form>
+</div>
 
+@push('scripts')
+<script>
+    var grupData = [];
+    var grupIndex = 0;
 
+    function addGrup() {
+        var jabatan = document.querySelector('[name="grup_temp[jabatan_grup]"]').value;
+        var perner = document.querySelector('[name="grup_temp[perner]"]').value;
+        var nama = document.querySelector('[name="grup_temp[nama]"]').value;
+        var fotoInput = document.querySelector('[name="grup_temp[foto]"]');
+        var foto = fotoInput.files[0];
 
-        <button class="submit-btn">SUBMIT</button>
-    </div>
-    </div>
+        if (!jabatan || !perner || !nama) {
+            alert("Semua kolom harus diisi!");
+            return;
+        }
 
-</body>
-</html>
+        grupData.push({
+            jabatan,
+            perner,
+            nama,
+            foto: foto ? foto.name : "Tidak ada foto"
+        });
+
+        var tableBody = document.getElementById("grup-table-body");
+        var newRow = `
+            <tr id="grup-row-${grupIndex}">
+                <td>${jabatan}</td>
+                <td>${perner}</td>
+                <td>${nama}</td>
+                <td>${foto ? foto.name : 'Tidak ada foto'}</td>
+                <td><button type="button" onclick="removeGrup(${grupIndex})">Hapus</button></td>
+            </tr>
+        `;
+        tableBody.insertAdjacentHTML('beforeend', newRow);
+
+        document.querySelector('[name="grup_temp[jabatan_grup]"]').value = '';
+        document.querySelector('[name="grup_temp[perner]"]').value = '';
+        document.querySelector('[name="grup_temp[nama]"]').value = '';
+        fotoInput.value = '';
+
+        grupIndex++;
+        updateGrupDataInput();
+    }
+
+    function removeGrup(index) {
+        grupData.splice(index, 1);
+        var row = document.getElementById(`grup-row-${index}`);
+        if (row) {
+            row.remove();
+        }
+        updateGrupDataInput();
+    }
+
+    function updateGrupDataInput() {
+        var grupDataInput = document.getElementById('grup_data');
+        grupDataInput.value = JSON.stringify(grupData);
+    }
+
+    document.getElementById('pabrik').addEventListener('change', function() {
+        var perusahaanId = this.value;
+
+        if (perusahaanId) {
+            fetch('{{ route('get-units') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ id_perusahaan: perusahaanId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                var unitSelect = document.getElementById('unit');
+                unitSelect.innerHTML = '<option value="" disabled selected>Pilih Unit</option>';
+
+                data.forEach(function(unit) {
+                    var option = document.createElement('option');
+                    option.value = unit.id_unit;
+                    option.textContent = unit.nama_unit;
+                    unitSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    });
+
+</script>
+@endpush
+
 @endsection

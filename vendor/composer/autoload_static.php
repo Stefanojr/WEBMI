@@ -421,6 +421,7 @@ class ComposerStaticInit73139c916534c2374680f306780d347a
         'App\\Http\\Controllers\\RisalahController' => __DIR__ . '/../..' . '/app/Http/Controllers/RisalahController.php',
         'App\\Http\\Controllers\\SubmissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubmissionController.php',
         'App\\Http\\Controllers\\SuperadminController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuperadminController.php',
+        'App\\Http\\Controllers\\SysadminController' => __DIR__ . '/../..' . '/app/Http/Controllers/SysadminController.php',
         'App\\Http\\Controllers\\UnitController' => __DIR__ . '/../..' . '/app/Http/Controllers/UnitController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\ViewerController' => __DIR__ . '/../..' . '/app/Http/Controllers/ViewerController.php',

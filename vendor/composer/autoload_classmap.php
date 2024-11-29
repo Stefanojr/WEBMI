@@ -22,6 +22,7 @@ return array(
     'App\\Http\\Controllers\\RisalahController' => $baseDir . '/app/Http/Controllers/RisalahController.php',
     'App\\Http\\Controllers\\SubmissionController' => $baseDir . '/app/Http/Controllers/SubmissionController.php',
     'App\\Http\\Controllers\\SuperadminController' => $baseDir . '/app/Http/Controllers/SuperadminController.php',
+    'App\\Http\\Controllers\\SysadminController' => $baseDir . '/app/Http/Controllers/SysadminController.php',
     'App\\Http\\Controllers\\UnitController' => $baseDir . '/app/Http/Controllers/UnitController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\ViewerController' => $baseDir . '/app/Http/Controllers/ViewerController.php',
