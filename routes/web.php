@@ -41,12 +41,12 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/superadmin/pendaftaran', function () {
     return view('superadmin.pendaftaran');
 })->name('superadmin.pendaftaran');
-Route::get('/superadmin/risalah', function () {
-    return view('superadmin.risalah');
-})->name('superadmin.risalah');
-Route::get('/superadmin/approval', function () {
-    return view('superadmin.approval');
-})->name('superadmin.approval');
+Route::get('/superadmin/daftarImprovementSA', function () {
+    return view('superadmin.daftarImprovementSA');
+})->name('superadmin.daftarImprovementSA');
+Route::get('/superadmin/arsip', function () {
+    return view('superadmin.arsip');
+})->name('superadmin.arsip');
 
 // routes unit page (pendaftaran, risalah and approval)
 Route::get('/unit/daftarImprovement', function () {
@@ -55,18 +55,19 @@ Route::get('/unit/daftarImprovement', function () {
 Route::get('/unit/pendaftaran2', function () {
     return view('unit.pendaftaran2');
 })->name('unit.pendaftaran2');
-Route::get('/unit/risalah2', function () {
-    return view('unit.risalah2');
-})->name('unit.risalah2');
-Route::get('/unit/approval2', function () {
-    return view('unit.approval2');
-})->name('unit.approval2');
 Route::get('/unit/timetable', function () {
     return view('unit.timetable');
 })->name('unit.timetable');
 Route::get('/unit/qcdsmpe', function () {
     return view('unit.qcdsmpe');
 })->name('unit.qcdsmpe');
+Route::get('/unit/arsip2', function () {
+    return view('unit.arsip2');
+})->name('unit.arsip2');
+Route::get('/unit/arsipfoto2', function () {
+    return view('unit.arsipfoto2');
+})->name('unit.arsipfoto2');
+
 
 // routes viewer page (pendaftaran, proposal and penilaian)
 Route::get('/viewer/pendaftaran3', function () {

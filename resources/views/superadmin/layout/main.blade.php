@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>Superadmin Page</title>
+    <title>Komite Page</title>
     <link rel="stylesheet" href="../../css/main.css">
     <script>
+        function confirmLogout() {
+            // Tampilkan pesan konfirmasi sebelum logout
+            const isConfirmed = confirm("Apakah anda yakin akan logout?");
+            if (isConfirmed) {
+                // Jika pengguna mengonfirmasi, redirect ke halaman login
+                window.location.href = '/';
+            }
+        }
         function logout() {
             // Redirect ke halaman login
             window.location.href = '/';
@@ -39,23 +47,19 @@
                 <i class="fas fa-home"></i>
                 Dashboard
             </a>
-            <a href="/superadmin/pendaftaran">
-                <i class="fas fa-file-alt"></i>
-                Pendaftaran Improvement
+            <a href="/superadmin/daftarImprovementSA">
+                <i class="fas fa-list"></i>
+                Delta Improvement
             </a>
-            <a href="/superadmin/risalah">
-                <i class="fas fa-file"></i>
-                Risalah Improvement
+            <a href="/superadmin/arsip">
+                <i class="fas fa-book"></i>
+                Arsip SMIF
             </a>
-            <a href="/superadmin/approval">
-                <i class="fas fa-check"></i>
-                Approval
-            </a>
-
         </div>
         <div class="logout">
             <img src="../images/gambarGP.png" class="logout-icon">
-            <button onclick="logout()">
+            <!-- Panggil fungsi confirmLogout ketika tombol Logout diklik -->
+            <button onclick="confirmLogout()">
                 <i class="fas fa-power-off"></i>
                 Logout
             </button>
@@ -63,7 +67,7 @@
     </div>
     <div class="content" style="flex-grow: 1;">
         <div class="topbar">
-            <h3>Hello, Superadmin!</h3>
+            <h3>E-SMIF</h3>
 
             <div class="profile-icon">C</div>
         </div>

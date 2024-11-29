@@ -39,8 +39,9 @@
             </div>
 
         </div>
-
         <img src="https://ajaib.co.id/wp-content/uploads/2020/09/logo-sidomuncul.png" alt="Company Logo" style="display: block; margin: 0 auto;"/>
+
+
 
         <input type="text" id="user-id" placeholder="ID" style="display: inline-block; width: 45%; margin-right: 10px ;"/>
         <input type="text" id="username" placeholder="Username" style="display: inline-block; width: 45%;"/>

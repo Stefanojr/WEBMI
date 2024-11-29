@@ -5,7 +5,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 230vh;
+    height: 175vh;
     background-color: #f9f9f9;
 }
 
@@ -14,10 +14,10 @@ body {
     max-width: 1000px;
     padding: 30px;
     position: -webkit-sticky;
-    margin-top: -400px;
+    margin-top: -15px;
     margin-left: 150px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 100%;
 }
 
@@ -55,10 +55,11 @@ h1 {
     flex: 1;
     padding: 10px;
     font-size: 14px;
+    margin-right: 80px;
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 40px;
-    margin-right: 80px;
+
 }
 .form-group select {
     flex: 1; /* Membuat input dan select mengisi sisa ruang */
@@ -83,8 +84,8 @@ h1 {
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
-    margin-top: 20px;
-    margin-left: 885px;
+    margin-top: 40px;
+    margin-left: 905px;
     margin-bottom: 10px;
 }
 
@@ -96,8 +97,8 @@ h1 {
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
-    margin-top: 25px;
-    margin-left: 800px;
+    margin-top: 10px;
+    margin-left: 880px;
     margin-bottom: 30px;
     width: 120px;
 }

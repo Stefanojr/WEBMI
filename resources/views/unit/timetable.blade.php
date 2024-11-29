@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../../css/background.css">
     <link rel="stylesheet" href="../../css/formTime.css">
-
+    <link rel="stylesheet" href="../../css/tableTime.css">
+    <title>FORM TIME TABLE</title>
 </head>
 <body>
 
@@ -47,72 +48,149 @@
             <div class="form-group">
                 <label for="rencanaAwal">Rencana Awal</label>
                 <div class="input-container">
-                    <input type="date" id="rencanaAwal" name="rencanaAwal" required>
-                    <label for="rencanaAwal">Akhir</label>
-                    <input type="date" id="rencanaAwalShort" name="rencanaAwalShort"  class="short-input">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="rencanaAkhir">Realisasi Awal</label>
-                <div class="input-container">
-                    <input type="date" id="rencanaAkhir" name="rencanaAkhir" required>
-                    <label for="rencanaAwal">Akhir</label>
-                    <input type="date" id="rencanaAkhirShort" name="rencanaAkhirShort" class="short-input">
+                    <input type="date" id="rencanaAwal" name="rencanaAwal" required onchange="calculateWeeks()">
+                    <label for="rencanaAkhir">Akhir</label>
+                    <input type="date" id="rencanaAkhir" name="rencanaAkhir" class="short-input" required onchange="calculateWeeks()">
                 </div>
             </div>
 
             <div class="section-title">INDIKATOR TIME TABLE</div>
             <div class="form-group">
                 <label for="plan">Planning</label>
-                <input type="text" id="plan" name="plan" required>
+                <input type="text" id="plan" name="plan" disabled>
             </div>
-            <div class="form-group">
-                <label for="real">Realisasi</label>
-                <input type="text" id="real" name="real" required>
-            </div>
+
+            <button type="button" class="insert-btn" onclick="addToTable()">+ Tambah</button>
+
+            <table id="strukturOrganisasiTable">
+                <thead>
+                    <tr>
+                        <th>Delete</th>
+                        <th>Langkah ke</th>
+                        <th>Fase</th>
+                        <th>Kegiatan</th>
+                        <th>Rencana Awal</th>
+                        <th>Akhir</th>
+                        <th>Planning</th>
+                        <th>Realisasi</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Data akan ditambahkan di sini -->
+                </tbody>
+            </table>
             <div class="form-group">
                 <button type="submit" class="submit-btn">SUBMIT</button>
             </div>
         </form>
     </div>
+
     <script>
         function updateInput() {
-            // Ambil nilai dropdown
             var selectedValue = document.getElementById("kegiatan").value;
 
-            // Set nilai input berdasarkan pilihan dropdown
             if (selectedValue === "Menentukan Masalah Utama") {
-                document.getElementById("noInput").value = "1"; // Set input No. menjadi 1
-                document.getElementById("faseInput").value = "Plan"; // Set fase menjadi "Plan"
+                document.getElementById("noInput").value = "1";
+                document.getElementById("faseInput").value = "Plan";
             } else if (selectedValue === "Mencari Sebab Masalah (Analisa Data)") {
-                document.getElementById("noInput").value = "2"; // Set input No. menjadi 2
-                document.getElementById("faseInput").value = "Plan"; // Set fase menjadi "Plan"
+                document.getElementById("noInput").value = "2";
+                document.getElementById("faseInput").value = "Plan";
             } else if (selectedValue === "Mencari Sebab Dominan") {
-                document.getElementById("noInput").value = "3"; // Set input No. menjadi 3
-                document.getElementById("faseInput").value = "Plan"; // Set fase menjadi "Plan"
+                document.getElementById("noInput").value = "3";
+                document.getElementById("faseInput").value = "Plan";
             } else if (selectedValue === "Menyusun Rencana Perbaikan") {
-                document.getElementById("noInput").value = "4"; // Set input No. menjadi 4
-                document.getElementById("faseInput").value = "Plan"; // Set fase menjadi "Plan"
+                document.getElementById("noInput").value = "4";
+                document.getElementById("faseInput").value = "Plan";
             } else if (selectedValue === "Melakukan Perbaikan") {
-                document.getElementById("noInput").value = "5"; // Set input No. menjadi 5
-                document.getElementById("faseInput").value = "Do"; // Set fase menjadi "Do"
+                document.getElementById("noInput").value = "5";
+                document.getElementById("faseInput").value = "Do";
             } else if (selectedValue === "Memeriksa Hasil Perbaikan") {
-                document.getElementById("noInput").value = "6"; // Set input No. menjadi 6
-                document.getElementById("faseInput").value = "Check"; // Set fase menjadi "Check"
+                document.getElementById("noInput").value = "6";
+                document.getElementById("faseInput").value = "Check";
             } else if (selectedValue === "Standarisasi") {
-                document.getElementById("noInput").value = "7"; // Set input No. menjadi 7
-                document.getElementById("faseInput").value = "Check"; // Set fase menjadi "Check"
+                document.getElementById("noInput").value = "7";
+                document.getElementById("faseInput").value = "Check";
             } else if (selectedValue === "Menentukan Rencana Berikutnya") {
-                document.getElementById("noInput").value = "8"; // Set input No. menjadi 8
-                document.getElementById("faseInput").value = "Act"; // Set fase menjadi "Act"
+                document.getElementById("noInput").value = "8";
+                document.getElementById("faseInput").value = "Act";
             } else {
-                document.getElementById("noInput").value = ""; // Kosongkan input No.
-                document.getElementById("faseInput").value = ""; // Kosongkan fase
+                document.getElementById("noInput").value = "";
+                document.getElementById("faseInput").value = "";
             }
         }
+
+        function calculateWeeks() {
+            var startDate = document.getElementById("rencanaAwal").value;
+            var endDate = document.getElementById("rencanaAkhir").value;
+
+            if (startDate && endDate) {
+                var start = new Date(startDate);
+                var end = new Date(endDate);
+
+                // Calculate the difference in milliseconds
+                var diffTime = end - start;
+
+                // Convert to weeks
+                var diffWeeks = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7));
+
+                // Update the Planning field
+                document.getElementById("plan").value = diffWeeks + " Minggu";
+            } else {
+                document.getElementById("plan").value = "";
+            }
+        }
+
+        function addToTable() {
+    // Ambil nilai dari input field
+    const langkah = document.getElementById("noInput").value;
+    const fase = document.getElementById("faseInput").value;
+    const kegiatan = document.getElementById("kegiatan").value;
+    const rencanaAwal = document.getElementById("rencanaAwal").value;
+    const rencanaAkhir = document.getElementById("rencanaAkhir").value;
+    const planning = document.getElementById("plan").value;
+
+    // Pastikan semua data yang diperlukan terisi
+    if (!langkah || !fase || !kegiatan || !rencanaAwal || !rencanaAkhir || !planning) {
+        alert("Harap lengkapi semua field sebelum menambahkan ke tabel.");
+        return;
+    }
+
+    // Ambil tabel dan buat baris baru
+    const table = document.getElementById("strukturOrganisasiTable").getElementsByTagName("tbody")[0];
+    const newRow = table.insertRow();
+
+    // Tambahkan sel untuk tombol Delete
+    const deleteCell = newRow.insertCell(0);
+    const langkahCell = newRow.insertCell(1);
+    const faseCell = newRow.insertCell(2);
+    const kegiatanCell = newRow.insertCell(3);
+    const rencanaAwalCell = newRow.insertCell(4);
+    const rencanaAkhirCell = newRow.insertCell(5);
+    const planningCell = newRow.insertCell(6);
+    const realisasiCell = newRow.insertCell(7); // Realisasi dibiarkan kosong
+
+    // Isi data ke dalam sel
+    deleteCell.innerHTML = `<button type="button" class="delete-btn" onclick="deleteRow(this)">Delete</button>`;
+    langkahCell.textContent = langkah;
+    faseCell.textContent = fase;
+    kegiatanCell.textContent = kegiatan;
+    rencanaAwalCell.textContent = rencanaAwal;
+    rencanaAkhirCell.textContent = rencanaAkhir;
+    planningCell.textContent = planning;
+    realisasiCell.textContent = ""; // Kosong karena realisasi disabled
+}
+function deleteRow(button) {
+    // Menghapus baris tempat tombol berada
+    const row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+
+
     </script>
+
 </body>
 </html>
+
 @endsection
 

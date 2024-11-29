@@ -13,7 +13,7 @@ body {
 
 .login-container {
     background-color: #FFFFFF;
-    padding: 40px;
+    padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -24,12 +24,12 @@ body {
     transform: scale(1.05);
 }
 .login-container img {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
+    width: 450px;
+    max-width: 380px;
+    height: 220px;
     margin-bottom: 30px;
     margin-top: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 .login-container h1 {
     font-size: 26px;
@@ -80,7 +80,7 @@ body {
     position: relative;
     width: 100%; /* Lebar penuh */
     overflow: hidden; /* Menyembunyikan bagian gambar yang keluar dari kontainer */
-    height: 200px; /* Sesuaikan tinggi sesuai kebutuhan */
+    height: 250px; /* Sesuaikan tinggi sesuai kebutuhan */
 }
 
 .mySlides {
@@ -90,11 +90,18 @@ body {
     height: 100%; /* Tinggi penuh */
     transition: transform 2s ease; /* Animasi transisi */
 }
+.mySlides image {
+    display: none;
+    position: absolute;
+    width: 150px; /* Lebar penuh */
+    height: 300px; /* Tinggi penuh */
+    transition: transform 2s ease; /* Animasi transisi */
+}
 .ad-image {
     max-width: 100%; /* Mengatur lebar maksimum gambar iklan */
     height: auto; /* Memastikan tinggi gambar otomatis */
     border: 2px solid #ccc; /* Menambahkan border untuk gambar iklan */
-    border-radius: 8px; /* Menambahkan sudut melengkung */
+    border-radius: 8px;
 }
 .text {
     color: #f2f2f2;

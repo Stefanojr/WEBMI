@@ -1,78 +1,130 @@
-
 @extends('superadmin.layout.main')
 @section('title', 'Dashboard')
 
 @section('content')
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Pengajuan</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../../css/background.css">
-    <link rel="stylesheet" href="../../css/calendarSA.css">
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="../../css/dashboard.css">
 
-</head>
-<body>
-    <div class="container">
-        <div class="month-year" id="month-year"></div>
-        <div class="calendar" id="calendar"></div>
+<div class="dashboard-content">
+
+    <header class="main-header">
+        <h1>Welcome, Komite SMIF!</h1>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>10</h3>
+                <p>Langkah 1</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>5</h3>
+                <p>Langkah 2</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>5</h3>
+                <p>Langkah 3</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>5</h3>
+                <p>Langkah 4</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>5</h3>
+                <p>Langkah 5</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>5</h3>
+                <p>Langkah 6</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>5</h3>
+                <p>Langkah 7</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-info">
+                <h3>5</h3>
+                <p>Langkah 8</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="notification-container">
+        <h2>Notifikasi</h2>
+        <div class="notification-card">
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="notification-content">
+                <p class="notification-message">Pemberitahuan penting: Langkah 1 telah diperbarui. (Sido IT)</p>
+                <span class="notification-time">2 menit lalu</span>
+            </div>
+        </div>
+        <div class="notification-card">
+            <div class="notification-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-content">
+                <p class="notification-message">Proses Langkah 2 selesai! (Sido IT)</p>
+                <span class="notification-time">5 menit lalu</span>
+            </div>
+        </div>
+        <div class="notification-card">
+            <div class="notification-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="notification-content">
+                <p class="notification-message">Tindakan yang diperlukan pada Langkah 3!</p>
+                <span class="notification-time">10 menit lalu</span>
+            </div>
+        </div>
     </div>
 
-    <script>
-    // Script untuk Calendar
-    const monthNames = [
-        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-    ];
-    function renderCalendar() {
-        const calendarElement = document.getElementById('calendar');
-        const monthYearElement = document.getElementById('month-year');
-        const now = new Date();
-        const month = now.getMonth();
-        const year = now.getFullYear();
 
-        monthYearElement.textContent = `${monthNames[month]} ${year}`;
+</div>
 
-        const firstDay = new Date(year, month, 1).getDay();
-        const lastDate = new Date(year, month + 1, 0).getDate();
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let steps = document.querySelectorAll('.step');
+        let currentStep = 0;
 
-        calendarElement.innerHTML = '';
-        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        dayNames.forEach(day => {
-            const dayNameElement = document.createElement('div');
-            dayNameElement.className = 'day-name';
-            dayNameElement.textContent = day;
-            calendarElement.appendChild(dayNameElement);
-        });
-
-        for (let i = 0; i < firstDay; i++) {
-            const emptyDiv = document.createElement('div');
-            calendarElement.appendChild(emptyDiv);
+        function activateStep(step) {
+            steps[step].classList.add('active');
         }
 
-        for (let date = 1; date <= lastDate; date++) {
-            const dateElement = document.createElement('div');
-            dateElement.className = 'day-number';
-            dateElement.textContent = date;
-            if (date === now.getDate()) {
-                dateElement.classList.add('today');
+        // Simulate progress over time (e.g., every 2 seconds)
+        setInterval(function() {
+            if (currentStep < steps.length) {
+                activateStep(currentStep);
+                currentStep++;
             }
-            calendarElement.appendChild(dateElement);
-        }
-    }
-
-    function init() {
-        renderCalendar();
-    }
-
-    init();
+        }, 2000); // Every 2 seconds
+    });
 
 </script>
 
-</html>
 @endsection
-
-
-

@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="../../css/main.css">
 
   <script>
+      function confirmLogout() {
+            // Tampilkan pesan konfirmasi sebelum logout
+            const isConfirmed = confirm("Apakah anda yakin akan logout?");
+            if (isConfirmed) {
+                // Jika pengguna mengonfirmasi, redirect ke halaman login
+                window.location.href = '/';
+            }
+        }
     function logout() {
         // Redirect ke halaman login
         window.location.href = '/';
@@ -28,6 +36,20 @@
 
         // Panggil fungsi setActiveMenu saat halaman dimuat
         window.onload = setActiveMenu;
+        function toggleSubmenu(event, submenuId) {
+    event.preventDefault(); // Mencegah navigasi langsung
+    const submenu = document.getElementById(submenuId);
+
+    // Toggle kelas 'active' pada submenu
+    if (submenu.classList.contains('active')) {
+        submenu.classList.remove('active');
+    } else {
+        submenu.classList.add('active');
+    }
+
+
+}
+
 </script>
 
     </head>
@@ -51,22 +73,34 @@
     <a class="active" href="/unit/daftarImprovement">
         <i class="fas fa-list">
         </i>
-    Daftar Improvement
+    Delta Improvement
        </a>
+       <a class="active" href="/unit/arsip2" onclick="toggleSubmenu('submenu-arsip')">
+        <i class="fas fa-book"></i>
+        Arsip SMIF
+    </a>
+    <div id="submenu-arsip" class="submenu">
+        <a href="/unit/arsipfoto2" class="submenu-item">
+            <i class="fas fa-camera"></i>
+            Arsip Foto
+        </a>
+    </div>
 
    </div>
    <div class="logout">
     <img src="../images/gambarGP.png" class="logout-icon">
-    <button onclick="logout()">
+    <!-- Panggil fungsi confirmLogout ketika tombol Logout diklik -->
+    <button onclick="confirmLogout()">
         <i class="fas fa-power-off"></i>
         Logout
     </button>
+</div>
 </div>
 
   </div>
   <div class="content" style="flex-grow: 1;">
     <div class="topbar">
-    <h3>Welcome, Department Groups!</h3>
+    <h3>E-SMIF</h3>
 
                 <div class="profile-icon">U</div>
 

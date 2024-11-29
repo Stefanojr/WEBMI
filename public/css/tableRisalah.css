@@ -7,16 +7,18 @@ body {
 }
 
 .table-container {
-    max-width: 900px;
+    max-width: 2000px;
     width: 100%;
     margin: 0 auto;
     margin-top: 60px;
-    margin-right: 470px;
+    margin-left: -30px;
+    margin-right: 560px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
     padding: 10px;
     margin-bottom: 20px;
+
 }
 
 h2 {

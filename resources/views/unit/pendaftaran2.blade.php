@@ -4,55 +4,77 @@
 @section('content')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="../../css/background.css">
+
 <link rel="stylesheet" href="../../css/formDaftar.css">
 <link rel="stylesheet" href="../../css/tableUnitDash.css">
 <html>
 <head>
     <title>Permohonan Pendaftaran Management Improvement</title>
     <script>
-        function addToTable() {
-            // Mengambil nilai dari input
-            var jabatan = document.getElementById("jabatan").value;
-            var perner = document.getElementById("perner").value;
-            var nama = document.getElementById("nama").value;
-            var foto = document.getElementById("foto").files[0] ? document.getElementById("foto").files[0].name : '';
+    function addToTable() {
+    // Mengambil nilai dari input
+    var jabatan = document.getElementById("jabatan").value;
+    var perner = document.getElementById("perner").value;
+    var nama = document.getElementById("nama").value;
+    var fotoInput = document.getElementById("foto");
+    var foto = fotoInput.files[0] ? fotoInput.files[0] : null;
 
-            // Mendapatkan tabel dan menambahkan baris baru
-            var table = document.getElementById("strukturOrganisasiTable").getElementsByTagName('tbody')[0];
-            var newRow = table.insertRow();
+    // Mendapatkan tabel dan menambahkan baris baru
+    var table = document.getElementById("strukturOrganisasiTable").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow();
 
-            // Menambahkan sel ke baris baru
-            var cell1 = newRow.insertCell(0);
-            var cell2 = newRow.insertCell(1);
-            var cell3 = newRow.insertCell(2);
-            var cell4 = newRow.insertCell(3);
-            var cell5 = newRow.insertCell(4);
+    // Menambahkan sel ke baris baru
+    var cellDelete = newRow.insertCell(0);
+    var cellNo = newRow.insertCell(1);
+    var cellJabatan = newRow.insertCell(2);
+    var cellPerner = newRow.insertCell(3);
+    var cellNama = newRow.insertCell(4);
+    var cellFoto = newRow.insertCell(5);
 
-            // Mengisi sel dengan data
-            cell1.innerHTML = '<a href="">Edit</a>';
-            cell2.innerHTML = table.rows.length; // Nomor urut
-            cell3.innerHTML = jabatan;
-            cell4.innerHTML = perner;
-            cell5.innerHTML = nama;
-            cell5.innerHTML += '<br>' + foto; // Menampilkan nama file foto
+    // Mengisi sel dengan data
+    cellDelete.innerHTML = '<button class="delete-btn" onclick="deleteRow(this)">Delete</button>';
+    cellNo.innerHTML = table.rows.length; // Nomor urut
+    cellJabatan.innerHTML = jabatan;
+    cellPerner.innerHTML = perner;
+    cellNama.innerHTML = nama;
 
-            // Mengosongkan input setelah ditambahkan
-            document.getElementById("jabatan").value = '';
-            document.getElementById("perner").value = '';
-            document.getElementById("nama").value = '';
-            document.getElementById("foto").value = '';
-        }
+    if (foto) {
+        // Membuat URL file sementara untuk ditampilkan
+        var fileUrl = URL.createObjectURL(foto);
+        cellFoto.innerHTML = `<a href="${fileUrl}" target="_blank">${foto.name}</a>`;
+    } else {
+        cellFoto.innerHTML = 'Tidak ada foto';
+    }
+
+    // Mengosongkan input setelah ditambahkan
+    document.getElementById("jabatan").value = '';
+    document.getElementById("perner").value = '';
+    document.getElementById("nama").value = '';
+    fotoInput.value = '';
+}
+
+function deleteRow(button) {
+    // Hapus baris yang sesuai
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+
+    // Perbarui nomor urut pada tabel
+    updateRowNumbers();
+}
+
+function updateRowNumbers() {
+    const table = document.getElementById("strukturOrganisasiTable").getElementsByTagName('tbody')[0];
+    for (let i = 0; i < table.rows.length; i++) {
+        table.rows[i].cells[2].innerHTML = i + 1; // Perbarui nomor urut
+    }
+}
+
     </script>
 </head>
 <body>
     <div class="container">
         <h1>PERMOHONAN PENDAFTARAN MANAGEMENT IMPROVEMENT</h1>
 
-        <div class="form-group">
-            <label for="idDaftar">ID Pendaftaran</label>
-            <input type="text" id="idDaftar" name="idDaftar" disabled>
-        </div>
         <div class="section-title">IDENTITAS GRUP</div>
         <div class="form-group">
             <label for="pabrik">Pabrik / Departemen</label>
@@ -76,13 +98,7 @@
             </select>
 
         </div>
-        <div class="form-group">
-            <label for="tanggal">Tanggal Pendaftaran</label>
-            <div class="date-icon">
-                <input type="date" id="tanggal" value="Date">
-
-            </div>
-        </div>
+        
         <div class="section-title">KETERANGAN TEMA</div>
         <div class="form-group">
             <label for="nomor-tema">Nomor Tema</label>
@@ -119,7 +135,7 @@
         <table id="strukturOrganisasiTable">
             <thead>
                 <tr>
-                    <th>Action</th>
+                    <th>Delete</th>
                     <th>No.</th>
                     <th>Jabatan</th>
                     <th>Perner</th>

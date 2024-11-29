@@ -12,18 +12,17 @@ class SuperadminController extends Controller
     {
         return view('superadmin/home');
     }
-    public function pengajuan()
+    public function pendaftaran()
     {
         return view('superadmin/pendaftaran');
     }
-    public function proposal()
+    public function daftarImprovementSA()
     {
-        return view('superadmin/risalah');
+        return view('superadmin/daftarImprovementSA');
     }
-    public function approval()
+    public function arsip()
     {
-        return view('superadmin/approval');
+        return view('superadmin/arsip');
     }
-   
 }
 

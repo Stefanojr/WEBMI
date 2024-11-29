@@ -35,5 +35,13 @@ class UnitController extends Controller
     {
         return view('unit/qcdsmpe');
     }
+    public function arsip2()
+    {
+        return view('unit/arsip2');
+    }
+    public function arsipfoto2()
+    {
+        return view('unit/arsipfoto2');
+    }
 }
 

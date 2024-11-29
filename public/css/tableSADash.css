@@ -40,7 +40,6 @@ h2 {
 }
 h3 {
     text-align: center;
-
 }
 
 
@@ -118,7 +117,7 @@ td {
 .popup-btn-id,
 .popup-btn-judul,
 .popup-btn-status {
-    background-color: 607274;
+    background-color: #607274;
     color: white;
     border: none;
     padding: 6px 10px;
@@ -270,9 +269,6 @@ label {
     transition: background-color 0.3s;
 }
 
-.popup-table button:hover {
-    background-color: #7d9093;
-}
 .popup-link {
     display: inline-block;
     padding: 5px 20px;
@@ -435,6 +431,7 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 40px;
+
     margin-left: -4px;
 
 }
@@ -499,29 +496,108 @@ label {
     align-items: center;
     margin-left: 5px;
   }
-  .popup-edit {
-    text-decoration: none;
-    background-color: #5878ab; /* Warna hijau */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 580px;
+
+
+/* Container for action buttons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
 }
 
-.popup-edit:hover {
-    background-color: #a1b1ca; /* Warna saat hover */
-}
-.delete-btn {
-    background-color: #ff4d4d;
+button[class="btn-acc"] {
+    background-color: #399918;
     color: white;
     border: none;
-    padding: 5px 10px;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
     cursor: pointer;
-    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
-.delete-btn:hover {
-    background-color: #cc0000;
+.btn-acc:hover {
+    background-color: #6fbf91;
+}
+
+button[class="btn-reject"]{
+    background-color: #CC3636;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-reject:hover {
+    background-color: #de9087; /* Darker red on hover */
+}
+/* Popup Keterangan Styles */
+.popup-keterangan {
+    display: none; /* Initially hide the popup */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.popup-keterangan .popup-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.popup-keterangan h3 {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+
+}
+
+.popup-keterangan .form-group {
+    margin-bottom: 15px;
+}
+
+.popup-keterangan textarea {
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+/* Submit button styling */
+.popup-keterangan button:first-child {
+    background-color: #3e8d50;
+    width: 90px;
+    margin-left: 420px;
+
+}
+
+.popup-keterangan button:first-child:hover {
+    background-color: #218838;
+}
+
+/* Close button styling */
+.popup-keterangan .popup-close {
+    background-color: #dc3545;
+    color: white;
+    margin-top: 60px;
+    margin-left: 250px;
+}
+
+.popup-keterangan .popup-close:hover {
+    background-color: #c82333;
 }

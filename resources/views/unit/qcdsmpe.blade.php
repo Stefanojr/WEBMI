@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../css/tableUnitDash.css">
 
 <div class="container">
-    <h1>SIDOMUNCUL IMPROVEMENT FORUM</h1>
+    <h1>TABEL ANALISA QCDSMPE</h1>
 
     <div class="form-group">
         <label for="no-urut">No.</label>
@@ -78,7 +78,7 @@
 
     <div class="form-group">
         <label for="cost-saving">Cost Saving</label>
-        <input type="text" id="cost-saving" name="cost-saving">
+        <input type="text" id="cost-saving" name="cost-saving" disabled>
     </div>
 
     <button class="submit-btn">SUBMIT</button>

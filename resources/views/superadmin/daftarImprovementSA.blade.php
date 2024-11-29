@@ -1,5 +1,5 @@
-@extends('unit.layout.main')
-@section('title', 'Dashboard')
+@extends('superadmin.layout.main')
+@section('title', 'Risalah')
 
 @section('content')
 <!DOCTYPE html>
@@ -10,13 +10,12 @@
     <title>Daftar Pengajuan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-
-    <link rel="stylesheet" href="../../css/tableUnitDash.css">
-    <link rel="stylesheet" href="../../css/notifUnit.css">
+    
+    <link rel="stylesheet" href="../../css/tableSADash.css">
 </head>
 <body>
     <div class="table-container">
-        <h2>DELTA IMPROVEMENT</h2>
+        <h2>DAFTAR IMPROVEMENT GRUP</h2>
         <div class="table-scroll">
             <table>
                 <thead>
@@ -25,10 +24,9 @@
                         <th>ID Grup</th>
                         <th>Unit</th>
                         <th>Perusahaan</th>
-                        <th>Kriteria Improvement</th>
+                        <th>Kriteria</th>
                         <th>Tema</th>
                         <th>Judul</th>
-                        <th>Time Table</th>
                         <th>Tanggal</th>
                         <th>Tahap Proses</th>
                     </tr>
@@ -45,12 +43,6 @@
                         <td>SGA</td>
                         <td>Efisiensi</td>
                         <td>Improvement</td>
-                        <td>
-                            <a href="timetable" class="popup-link">
-                                <i class="fas fa-calendar-alt"></i>
-                            </a>
-                        </td>
-
 
                         <td>19/11/2024</td>
                         <td>
@@ -63,14 +55,15 @@
             </table>
         </div>
     </div>
+
     <div class="popup" id="popup-id">
         <div class="popup-content">
             <h3 id="popup-id-title">Struktur Anggota</h3>
-
             <form id="popup-id-content">
                 <div class="input-container">
                     <label for="id-pendaftaran">ID Pendaftaran</label>
                     <input type="text" id="id-pendaftaran" name="id-pendaftaran">
+
                 </div>
                 <div class="input-container">
                     <label for="sponsor">Nama Sponsor</label>
@@ -123,60 +116,7 @@
                     <input type="text" class="short-input" id="short-anggota6" name="short-anggota6">
                 </div>
             </form>
-            <a href="pendaftaran2" class="popup-edit" id="popup-edit-id">
-                <i class="fas fa-edit"></i> Edit Pendaftaran
-            </a>
-            <!-- Tambahkan tombol Edit Pendaftaran -->
-
             <button class="popup-close" id="popup-close-id">Close</button>
-
-
-        </div>
-    </div>
-
-
-    <!-- Popup for Form Judul -->
-    <div class="popup" id="popup-judul">
-        <div class="popup-content">
-            <h3 id="popup-judul-title">Edit Judul</h3>
-            <form id="popup-judul-content">
-                <div>
-                    <label for="judul-saat-ini">Judul Lama</label>
-                    <input type="text" id="judul-saat-ini" name="judul-saat-ini">
-                </div>
-                <div>
-                    <label for="judul-baru">Judul Baru</label>
-                    <input type="text" id="judul-baru" name="judul-baru" required>
-                </div>
-                <div>
-                    <label for="status">Alasan Perubahan Judul</label>
-                    <input type="text" id="status" name="status" required>
-                </div>
-
-                <submit>Save</submit>
-            </form>
-            <table border="1" style="margin-top: 20px; width: 100%; text-align: left;">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Judul Saat Ini</th>
-                        <th>Judul Baru</th>
-                        <th>Keterangan</th>
-                        <th>Tanggal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Contoh Judul Lama</td>
-                        <td>Contoh Judul Baru</td>
-                        <td>Contoh Keterangan</td>
-                        <td>20/11/2024</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <button class="popup-close" id="popup-close-judul">Close</button>
         </div>
     </div>
 
@@ -190,144 +130,107 @@
                     <th>Tanggal</th>
                     <th>Tahapan</th>
                     <th>Dokumen</th>
-                    <th>Status Approval</th>
-                    <th>Pengumpulan</th>
+                    <th>Detail Approval</th>
+                    <th>Keterangan</th>
+                    <th>Keputusan</th>
                 </tr>
             </thead>
             <tbody id="popup-table-body">
                 <tr>
                     <td>2024-11-19</td>
                     <td>Langkah 1</td>
-                    <td>Dokumen 1</td>
+                    <td>
+                        <a href="/path/to/dokumen1" target="_blank">
+                            <i class="fas fa-file" title="View" style="color: #607274"></i>
+                        </a>
+                    </td>
+
                      <td>
-                        <button class="open-modal-button" data-step="Langkah 1">Langkah 1</button>
+                        <button class="open-modal-button" data-step="detail">detail</button>
                     </td>
                     <td>
-                        <label for="file-upload-1" class="upload-icon">
-                            <i class="fas fa-upload"></i>
-                        </label>
+                        <button class="open-modal-button2" data-step="Keterangan">Keterangan</button>
                     </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-acc" onclick="handleAcc()">Approve</button>
+                            <button class="btn-reject" onclick="handleReject()">Reject</button>
+                        </div>
+                    </td>
+
+
                 </tr>
                 <tr>
                     <td>2024-11-19</td>
                     <td>Langkah 2</td>
-                    <td>Dokumen 2</td>
                     <td>
-                        <button class="open-modal-button" data-step="Langkah 2">Langkah 2</button>
+                        <a href="/path/to/dokumen1" target="_blank">
+                            <i class="fas fa-file" title="View" style="color: #607274"></i>
+                        </a>
                     </td>
                     <td>
-                        <label for="file-upload-2" class="upload-icon">
-                            <i class="fas fa-upload"></i>
-                        </label>
-
+                        <button class="open-modal-button" data-step="Langkah 2">detail</button>
                     </td>
-                </tr>
-                <tr>
+                    <td>
+                        <button class="open-modal-button2" data-step="Keterangan">Keterangan</button>
+                    </td>
+                    <td>
+                 <div class="action-buttons">
+        <button class="btn-acc" onclick="handleAcc()">Approve</button>
+        <button class="btn-reject" onclick="handleReject()">Reject</button>
+    </div>
+        </td>
+        </tr>
+         <tr>
                     <td>2024-11-19</td>
                     <td>Langkah 3</td>
-                    <td>Dokumen 3</td>
                     <td>
-                        <button class="open-modal-button" data-step="Langkah 3">Langkah 3</button>
+                        <a href="/path/to/dokumen1" target="_blank">
+                            <i class="fas fa-file" title="View" style="color: #607274"></i>
+                        </a>
                     </td>
                     <td>
-                        <label for="file-upload-3" class="upload-icon">
-                            <i class="fas fa-upload"></i>
-                        </label>
+                        <button class="open-modal-button" data-step="Langkah 3">detail</button>
+                    </td>
+                    <td>
+                        <button class="open-modal-button2" data-step="Keterangan">Keterangan</button>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-acc">Approve</button>
+                            <button class="btn-reject">Reject</button>
+                        </div>
+                    </td>
 
-                    </td>
                 </tr>
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 4</td>
-                    <td>Dokumen 4</td>
-                    <td>
-                        <button class="open-modal-button" data-step="Langkah 4">Langkah 4</button>
-                    </td>
-                    <td>
-                        <label for="file-upload-4" class="upload-icon">
-                            <i class="fas fa-upload"></i>
-                        </label>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 5</td>
-                    <td>Dokumen 5</td>
-                    <td>
-                        <button class="open-modal-button" data-step="Langkah 5">Langkah 5</button>
-                    </td>
-                    <td>
-                        <label for="file-upload-5" class="upload-icon">
-                            <i class="fas fa-upload"></i>
-                        </label>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 6</td>
-                    <td>Dokumen 6</td>
-                    <td>
-                        <button class="open-modal-button" data-step="Langkah 6">Langkah 6</button>
-                    </td>
-                    <td>
-                        <label for="file-upload-6" class="upload-icon">
-                            <i class="fas fa-upload"></i>
-                        </label>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>QCDSMPE </td>
-                    <td>Dokumen QCDSMPE</td>
-                    <td>
-                        <button class="open-modal-button" data-step="qcdsmpe">QCDSMPE</button>
-                    </td>
-                    <td>
-                        <a href="qcdsmpe" id="upload-link">
-                            <i class="fa fa-upload" id="upload-icon"></i>
-                          </a>
-
-                          <!-- Sertakan link ke Font Awesome di dalam <head> -->
-                          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 7</td>
-                    <td>Dokumen 7</td>
-                    <td>
-                        <button class="open-modal-button" data-step="Langkah 6">Langkah 7</button>
-                    </td>
-                    <td>
-                        <label for="file-upload-7" class="upload-icon">
-                            <i class="fas fa-upload"></i>
-                        </label>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>2024-11-19</td>
-                    <td>Langkah 8</td>
-                    <td>Dokumen 8</td>
-                    <td>
-                        <button class="open-modal-button" data-step="Langkah 6">Langkah 8</button>
-                    </td>
-                    <td>
-                        <label for="file-upload-8" class="upload-icon">
-                            <i class="fas fa-upload"></i>
-                        </label>
-
-                    </td>
-                </tr>
             </tbody>
         </table>
         <button class="popup-close" id="popup-close-table">Close</button>
     </div>
 </div>
+
+<!-- Popup Modal for Keterangan (Comment Form) -->
+<div class="popup-keterangan" id="popup-keterangan" style="display: none;">
+    <div class="popup-content">
+        <h3>Berikan Keterangan</h3>
+        <form id="keterangan-form">
+            <div class="form-group">
+                <label for="keterangan">Komentar:</label>
+                <textarea id="keterangan" name="keterangan" rows="4" required placeholder="Tuliskan keterangan..."></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="button" class="popup-close" id="popup-close-keterangan">Close</button>
+            </div>
+        </form>
+        <div id="success-message" style="display: none; color: green;">
+            Komentar berhasil disubmit!
+        </div>
+    </div>
+</div>
+
+
 
 <!-- Modal for Detail Approval -->
 <div class="modal" id="modal-detail-approval">
@@ -366,42 +269,6 @@
 
 <!-- Modal for Upload Risalah -->
 
-<div class="modal" id="upload-modal">
-    <div class="modal-content-upload">
-        <h3>Upload Risalah</h3>
-        <form id="upload-form">
-            <!-- File type selection -->
-            <div class="form-group">
-                <label for="select-file">Pilih File</label>
-                <select id="select-file" name="select-file" required>
-                    <option value="" disabled selected>Pilih Tipe File</option>
-                    <option value="pdf">Pdf</option>
-                    <option value="excel">Excel</option>
-                </select>
-            </div>
-
-            <!-- Upload PDF input field (hidden by default) -->
-            <div class="form-group" id="upload-pdf-container" style="display: none;">
-                <label for="upload_file">Upload PDF</label>
-                <input type="file" id="upload_file" name="upload_file" accept=".pdf" />
-            </div>
-
-            <!-- Upload Link input field (hidden by default) -->
-            <div class="form-group" id="upload-link-container" style="display: none;">
-                <label for="link">Upload Link</label>
-                <input type="text" id="link" name="link" />
-            </div>
-
-            <div class="form-actions">
-                <button type="submit">Upload</button>
-            </div>
-
-            <div class="form-actions">
-                <button type="close-modal" id="close-modal">Close</button>
-            </div>
-        </form>
-    </div>
-</div>
 
     <script>
 // Script popup
@@ -410,24 +277,17 @@
 const popupId = document.getElementById("popup-id");
 const popupJudul = document.getElementById("popup-judul");
 const popupTable = document.getElementById("popup-table");
+const popupKeterangan = document.getElementById("popup-keterangan"); // New popup for comments
 const popupCloseIdButton = document.getElementById("popup-close-id");
 const popupCloseJudulButton = document.getElementById("popup-close-judul");
 const popupCloseTableButton = document.getElementById("popup-close-table");
+const popupCloseKeteranganButton = document.getElementById("popup-close-keterangan"); // Close button for Keterangan popup
 
 // Fungsi untuk membuka popup ID Pendaftaran
 function openIdPopup(id, tanggal, tema) {
     // Isi data ID Pendaftaran pada form
     document.getElementById("id-pendaftaran").value = id;
-
-
     popupId.style.display = "block";
-}
-
-// Fungsi untuk membuka popup Judul
-function openJudulPopup(judul) {
-    // Isi data Judul pada form
-
-    popupJudul.style.display = "block";
 }
 
 // Fungsi untuk membuka popup Table
@@ -435,14 +295,14 @@ function openTablePopup() {
     popupTable.style.display = "block";
 }
 
+// Fungsi untuk membuka popup Keterangan (Comment Form)
+function openKeteranganPopup() {
+    popupKeterangan.style.display = "block"; // Show the comment form popup
+}
+
 // Fungsi untuk menutup popup ID Pendaftaran
 function closeIdPopup() {
     popupId.style.display = "none";
-}
-
-// Fungsi untuk menutup popup Judul
-function closeJudulPopup() {
-    popupJudul.style.display = "none";
 }
 
 // Fungsi untuk menutup popup Table
@@ -450,22 +310,17 @@ function closeTablePopup() {
     popupTable.style.display = "none";
 }
 
+// Fungsi untuk menutup popup Keterangan
+function closeKeteranganPopup() {
+    popupKeterangan.style.display = "none";
+}
+
 // Menangani klik pada tombol ID Pendaftaran untuk membuka popup ID Pendaftaran
 document.querySelectorAll(".popup-btn-id").forEach(button => {
     button.addEventListener("click", (e) => {
         const id = e.target.getAttribute("data-id");
         const label = e.target.getAttribute("data-label");
-        // Menampilkan popup untuk ID Pendaftaran dengan data
         openIdPopup(id, "19/11/2024", "Effrsnsbf");
-    });
-});
-
-// Menangani klik pada tombol Judul untuk membuka popup Judul
-document.querySelectorAll(".popup-btn-judul").forEach(button => {
-    button.addEventListener("click", (e) => {
-        const label = e.target.getAttribute("data-label");
-        // Menampilkan popup untuk Judul
-        openJudulPopup("Impdffjehf");
     });
 });
 
@@ -474,41 +329,42 @@ document.querySelectorAll(".popup-btn-status").forEach(button => {
     button.addEventListener("click", openTablePopup);
 });
 
+// Menangani klik pada tombol Keterangan untuk membuka popup Keterangan
+document.querySelectorAll(".open-modal-button2").forEach(button => {
+    button.addEventListener("click", openKeteranganPopup);
+});
+
 // Menangani klik pada tombol close di popup ID Pendaftaran
 popupCloseIdButton.addEventListener("click", closeIdPopup);
-
-// Menangani klik pada tombol close di popup Judul
-popupCloseJudulButton.addEventListener("click", closeJudulPopup);
 
 // Menangani klik pada tombol close di popup Table
 popupCloseTableButton.addEventListener("click", closeTablePopup);
 
+// Menangani klik pada tombol close di popup Keterangan
+popupCloseKeteranganButton.addEventListener("click", closeKeteranganPopup);
 
-// Menangani pengiriman form Judul
-document.getElementById("popup-judul-content").addEventListener("submit", (event) => {
-    event.preventDefault(); // Mencegah pengiriman form biasa
-    const judulBaru = document.getElementById("judul-baru").value;
-    const keterangan = document.getElementById("status").value;
+// Handle submit button in the Keterangan form
+const keteranganForm = document.getElementById("keterangan-form"); // Assuming the form has this ID
+if (keteranganForm) {
+    keteranganForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
 
-    // Proses data Judul yang telah
+        // Tampilkan pesan berhasil menggunakan alert window
+        alert('Komentar berhasil disubmit!');
 
-    console.log("Data Judul yang disimpan:", { judulBaru, keterangan });
+        // Close only the Keterangan popup
+        closeKeteranganPopup();
+    });
+}
 
-    // Tutup popup setelah form disubmit
-    closeJudulPopup();
-});
 
-// Script Modal
-
-// Ambil elemen modal dan tombol close
+// Ambil elemen modal dan tombol close untuk Detail Approval
 const modal = document.getElementById('modal-detail-approval');
 const closeModalButton = document.getElementById('modal-close');
 
-// Fungsi untuk membuka modal
+// Fungsi untuk membuka modal Detail Approval
 function openModal(step) {
     modal.style.display = 'flex';
-
-    // Perbarui konten modal jika diperlukan
     const modalTitle = modal.querySelector('h3');
     modalTitle.textContent = `Detail Approval - ${step}`;
 }
@@ -536,56 +392,43 @@ document.querySelectorAll('.open-modal-button').forEach((button) => {
     });
 });
 
-//upload
-// Function to open the modal when the upload icon is clicked
+// Upload functionality (unchanged)
 document.querySelectorAll('.upload-icon').forEach(item => {
     item.addEventListener('click', function() {
-        // Show the modal
         document.getElementById('upload-modal').style.display = 'block';
     });
 });
 
-// Close modal when "Close" button is clicked
 document.getElementById('close-modal').addEventListener('click', function() {
     document.getElementById('upload-modal').style.display = 'none';
 });
 
-// Handle file upload form submission
 document.getElementById('upload-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const fileInput = document.getElementById('upload-file');
-
-    // Check if a file is selected
     if (fileInput.files.length > 0) {
         alert('File uploaded successfully!');
-        // Close the modal after uploading
         document.getElementById('upload-modal').style.display = 'none';
     } else {
         alert('Please select a file to upload.');
     }
 });
 
-// Event listener for dropdown change
 document.getElementById('select-file').addEventListener('change', function() {
     var selectedFileType = this.value;
-
-    // Hide both fields initially
     document.getElementById('upload-pdf-container').style.display = 'none';
     document.getElementById('upload-link-container').style.display = 'none';
 
-    // Show the appropriate field based on selected file type
     if (selectedFileType === 'pdf') {
-        document.getElementById('upload-pdf-container').style.display = 'block'; // Show PDF upload field
+        document.getElementById('upload-pdf-container').style.display = 'block';
     } else if (selectedFileType === 'excel') {
-        document.getElementById('upload-link-container').style.display = 'block'; // Show link input field
+        document.getElementById('upload-link-container').style.display = 'block';
     }
 });
 
-// Handle form submission (optional validation)
 document.getElementById('upload-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-
+    event.preventDefault();
     var fileInput = document.getElementById('upload_file');
     var linkInput = document.getElementById('link');
     var fileType = document.getElementById('select-file').value;
@@ -596,19 +439,21 @@ document.getElementById('upload-form').addEventListener('submit', function(event
         alert('Please provide a link for the Excel file.');
     } else {
         alert('Form submitted successfully!');
-        // You can perform AJAX or other logic here for submitting the form
-        document.getElementById('upload-modal').style.display = 'none'; // Close the modal after submission
+        document.getElementById('upload-modal').style.display = 'none';
     }
 });
 
-// Handle close modal button
 document.getElementById('close-modal').addEventListener('click', function() {
-    document.getElementById('upload-modal').style.display = 'none'; // Hide the modal
+    document.getElementById('upload-modal').style.display = 'none';
 });
+
+
 
 
     </script>
 
 </body>
 </html>
+
+
 @endsection
